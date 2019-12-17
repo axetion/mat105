@@ -1,0 +1,191 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>MAT 105</title>
+	</head>
+
+	<body>
+		<style>
+			@font-face
+			{
+				font-family: title;
+				src: url("/fonts/TragicMarker.otf");
+			}
+
+			@font-face
+			{
+				font-family: caption;
+				src: url("/fonts/HKGrotesk-Medium.otf");
+			}
+
+			body
+			{
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #cfcfcf;
+				overflow: hidden;
+			}
+
+			#container
+			{
+				position: absolute;
+
+				top: 60%;
+				left: 50%;
+				width: 75%;
+				height: 35%;
+				z-index: 1;
+
+				transform: translateX(-50%);
+				-webkit-transform: translateX(-50%);
+				-ms-transform: translateX(-50%);
+			}
+
+			#title
+			{
+				font-family: title;
+				font-size: 5vmin;
+				text-align: center;
+				white-space: nowrap;
+				color: rgb(200, 200, 200);
+
+				opacity: 0;
+			}
+
+			#caption
+			{
+				margin-top: 2%;
+				height: 35%;
+
+				opacity: 0;
+				border-radius: 10px;
+				background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+			}
+
+			#captioninner
+			{
+				font-family: caption;
+				font-size: 2vmin;
+				text-align: center;
+				opacity: 0;
+
+				padding-top: 0.5%;
+				padding-left: 2%;
+				width: 96%;
+				height: 100%;
+			}
+
+			#controls
+			{
+				position: relative;
+				top: -10%;
+				left: calc(100% - 50px);
+				opacity: 0;
+
+				width: 30px;
+				height: 20px;
+				white-space: nowrap;
+
+				user-select: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+			}
+
+			#left
+			{
+				display: inline-block;
+				cursor: pointer;
+
+				width: 15px;
+				height: 15px;
+
+				padding-bottom: 2px;
+
+				transform: scale(-1);
+				-webkit-transform: scale(-1);
+				-ms-transform: scale(-1);
+			}
+
+			#right
+			{
+				display: inline-block;
+				cursor: pointer;
+
+				width: 15px;
+				height: 15px;
+			}
+
+			#introContainer
+			{
+				font-family: caption;
+				font-size: 2vmin;
+
+				margin-left: 1%;
+				width: 98%;
+				height: 100%;
+
+				opacity: 0;
+			}
+
+			#header
+			{
+				font-family: title;
+				font-size: 5vmin;
+				text-align: center;
+				margin-top: 0.5%;
+				margin-bottom: 0.5%;
+			}
+
+			#bibliography
+			{
+				font-family: title;
+				font-size: 2.5vmin;
+
+				color: black;
+
+				position: absolute;
+				bottom: 3%;
+				left: 3%;
+			}
+
+			#introskip
+			{
+				font-family: title;
+				font-size: 2.5vmin;
+
+				position: absolute;
+				bottom: 3%;
+				right: 3%;
+				cursor: pointer;
+				text-decoration: underline;
+			}
+
+			#blinker
+			{
+				display: inline-block;
+				opacity: 0;
+				text-decoration: none;
+			}
+		</style>
+
+		<div id="introContainer">
+			<div id="header">ATELIER POPULAIRE</div>
+			<div id="intro"></div>
+		</div>
+
+		<a id="bibliography" href="#" onclick="var w=window.open();w.document.write(atob('QmlibGlvZ3JhcGh5Ojxici8+PGJyLz5LdWdlbGJlcmcsIEpvaGFuLCBhbmQgUGhpbGlwcGUgVmVybWVzLiBCZWF1dHkgSXMgaW4gdGhlIFN0cmVldC4gTG9uZG9uOiBGb3VyIENvcm5lciBCb29rcywgMjAxMS48YnIvPkZlZW5iZXJnLCBBbmRyZXcsIGFuZCBKaW0gRnJlZWRtYW4uIFdoZW4gUG9ldHJ5IFJ1bGVkIHRoZSBTdHJlZXQuIEFsYmFueTogVW5pdmVyc2l0eSBvZiBOZXcgWW9yaywgMjAwMS48YnIvPkJlbmV6aXQgRGljdGlvbmFyeSBvZiBBcnRpc3RzLiAiR2VyeiwgSm9jaGVuLiIgT3hmb3JkIEFydCBPbmxpbmUgKDIwMTEpOiBkb2k6MTAuMTA5My9iZW56Lzk3ODAxOTk3NzM3ODcuYXJ0aWNsZS5CMDAwNzI5NjkuPGJyLz5CZW5leml0IERpY3Rpb25hcnkgb2YgQXJ0aXN0cy4gIkpvbGl2ZXQsIE1lcnJpLiIgT3hmb3JkIEFydCBPbmxpbmUgKDIwMTEpOiBkb2k6MTAuMTA5My9iZW56Lzk3ODAxOTk3NzM3ODcuYXJ0aWNsZS5CMDAwOTU0NDMuPGJyLz5CZW5leml0IERpY3Rpb25hcnkgb2YgQXJ0aXN0cy4gIkN1ZWNvLCBIZW5yaS4iIE94Zm9yZCBBcnQgT25saW5lICgyMDExKTogZG9pOjEwLjEwOTMvYmVuei85NzgwMTk5NzczNzg3LmFydGljbGUuQjAwMDQ1MTEzLjxici8+R2lsbW91ciwgUGF0LiAiU2NyZWVucHJpbnRpbmcuIiBPeGZvcmQgQXJ0IE9ubGluZSAoMjAwMyk6IGRvaToxMC4xMDkzL2dhby85NzgxODg0NDQ2MDU0LmFydGljbGUuVDA3NzE4My48YnIvPk1jTmFtYXJhLCBTYXJhLiAiUG9zdGVycywgUG9saXRpY3MgYW5kIGltbWlncmF0aW9uIGR1cmluZyB0aGUgTWF5IDE5NjggUHJvdGVzdHMgaW4gRnJhbmNlLiIgVW5pdmVyc2l0eSBvZiBOZXcgT3JsZWFucyBUaGVzZXMgYW5kIERpc3NlcnRhdGlvbnMgcGFwZXIgMTEwICgyMDEwKS4gaHR0cDovL2NpdGVzZWVyeC5pc3QucHN1LmVkdS92aWV3ZG9jL2Rvd25sb2FkP2RvaT0xMC4xLjEuNDI1Ljk1MzgmcmVwPXJlcDEmdHlwZT1wZGY8YnIvPlNhbiBNYXJ0aW4sIEZsb3JlbmNpYS4gIkFlc3RoZXRpY3Mgb2YgRGlzb2JlZGllbmNlLiIgU21pdGhzb25pYW4uY29tLiBMYXN0IG1vZGlmaWVkIEF1Z3VzdCAyM3JkIDIwMTguIGh0dHBzOi8vd3d3LnNtaXRoc29uaWFubWFnLmNvbS9ibG9ncy9hcmNoaXZlcy1hbWVyaWNhbi1hcnQvMjAxOC8wOC8yMy9hZXN0aGV0aWNzLWRpc29iZWRpZW5jZS88YnIvPkNvcmtyYW4sIENocmlzdGluZSBNLiAiRGVmaW5pbmcgUG9saXRpY2FsIEFjdGlvbjogUG9zdGVycyBhbmQgR3JhZmZpdGkgZnJvbSBQYXJpcyAxOTY4LiIgRiZNIFRoZXNlcyBDb2xsZWN0aW9uIDMyMiAoMjAwNSkuIGh0dHA6Ly9oZGwuaGFuZGxlLm5ldC8xMTAxNi83NDE8YnIvPlNjb3R0LCBWaWN0b3JpYSBILkYuICJMZSBDYXJyZSBCbGFuYzogQ2Vuc29yc2hpcCBhbmQgdGhlIFBvc3RlcnMgb2YgTWF5IGFuZCBKdW5lIDE5NjguIiBBbm5hbGkgRGVsbGEgU2N1b2xhIE5vcm1hbGUgU3VwZXJpb3JlIERpIFBpc2EuIENsYXNzZSBEaSBMZXR0ZXJlIEUgRmlsb3NvZmlhLCBTZXJpZSA1LCAyLCBuby4gMSAoMjAxMCk6IDI1MS0zOTAuIGh0dHA6Ly93d3cuanN0b3Iub3JnL3N0YWJsZS8yNDMwODYyMw==')); return false;">BIBLIOGRAPHY</a>
+		<div id="introskip" onclick="updateIntro();">CONTINUE<span id="blinker"> ▶</span></div>
+
+		<div id="container">
+			<div id="title"></div>
+			<div id="caption"><div id="captioninner"></div></div>
+			<div id="controls"><span id="left">▶</span> <span id="right">▶</span></div>
+		</div>
+
+		<script src="thirdparty/three.min.js"></script>
+		<script src="index.js"></script>
+	</body>
+</html>
